@@ -1,3 +1,14 @@
+---
+title: "01 Starting a Metagenomics Project"
+format:
+  html:
+    smooth-scroll: true
+    highlight-style: github 
+    embed-resources: true
+    code-overflow: scroll
+    code-block-background: true
+---
+
 # Starting a Metagenomics Project {#sec-starting-a-metagenomics-project}
 
 ::: {.callout-note icon="false"}
