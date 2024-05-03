@@ -32,14 +32,6 @@ format:
 -	Understand the importance of metadata
 :::
 
-::: {.callout-caution icon="false"}
-## Keypoints
-
--	Shotgun metagenomics can be used for taxonomic and functional studies.
--	Metabarcoding can be used for taxonomic studies.
--	Collecting metadata beforehand is fundamental for downstream analysis.
-:::
-
 ## Metagenomics 
 
 Metagenomes are collections of genomic 
@@ -157,11 +149,7 @@ than bacterial.  Finally, they surmised that functional differences would occur 
 
 ![Overview of sampling sites](fig/01-03.png)
 
-Plant samples were obtained from chilli pepper production fields, divided into healthy (those plants showing no disease and testing pathogen-negative)
-and diseased (those that showed wilt symptoms and tested pathogen-positive).  Each plant sample was divided into 12 compartments: the bulk soil (BulkS), rhizosphere soil (RHS), 
-root episphere (Repi) and endosphere (Rendo), bottom stem epidermis (BS-epidermis) and xylem (BS-xylem), 
-middle stem epidermis (MS-epidermis) and xylem (MS-xylem), upper stem epidermis (US-epidermis) and xylem (US-xylem), 
-and fruit episphere (Fepi) and endophere (Fendo).
+Plant samples were obtained from chilli pepper production fields, divided into healthy (those plants showing no disease and testing pathogen-negative) and diseased (those that showed wilt symptoms and tested pathogen-positive).  Each plant sample was divided into 12 compartments: the bulk soil (BulkS), rhizosphere soil (RHS), root episphere (Repi) and endosphere (Rendo), bottom stem epidermis (BS-epidermis) and xylem (BS-xylem), middle stem epidermis (MS-epidermis) and xylem (MS-xylem), upper stem epidermis (US-epidermis) and xylem (US-xylem), and fruit episphere (Fepi) and endophere (Fendo).
 
 ::: {.callout-tip icon="false"}
 ## Exercise 1: Reviewing metadata
@@ -240,4 +228,12 @@ been submitted to the NCBI Sequence Read Archive (SRA) and stored in the BioProj
 ## Other Metagenomic Databases
 
 The NCBI SRA is not the only repository for metagenomic information. There are other public metagenomic databases such as [MG-RAST](https://www.mg-rast.org/index.html?stay=1), [MGnify](https://www.ebi.ac.uk/metagenomics/), [Marine Metagenomics Portal](https://mmp.sfb.uit.no/), [Terrestrial Metagenome DB](https://webapp.ufz.de/tmdb/) and the [GM Repo](https://gmrepo.humangut.info/home).
+:::
+
+::: {.callout-caution icon="false"}
+## Keypoints
+
+-	Shotgun metagenomics can be used for taxonomic and functional studies.
+-	Metabarcoding can be used for taxonomic studies.
+-	Collecting metadata beforehand is fundamental for downstream analysis.
 :::

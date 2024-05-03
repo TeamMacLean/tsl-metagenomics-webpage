@@ -32,14 +32,6 @@ format:
 
 :::
 
-::: {.callout-caution icon="false"}
-## Keypoints
-
--	It is important to know the quality of our data to make decisions in the subsequent steps
--	FastQC is a program that allows us to know the quality of FASTQ files
-
-:::
-
 ## Bioinformatic workflows
 
 When working with high-throughput sequencing data, the raw reads you get off the sequencer must pass
@@ -157,7 +149,12 @@ Therefore, all the work carried out here will be within the [Metagenomics Galaxy
 
 At the start of this session you were given a SRA accession number.  These are the reads you will be processing today.
 
-First thing we need to do is load our reads into Galaxy.  To do this, use the **Tools** panel and open up the **Get Data** section.
+First thing we need to do is load our reads into Galaxy.  We will be doing this using a **shared Galaxy History**, however in reality for this dataset, you would use a built-in tool called **Download and Extract Reads in FASTQ format from NCBI SRA**, therefore for your information, the steps are outlined below.
+
+::: {.callout-important collapse="true" icon="false"}
+## Steps for using Download and Extract Reads in FASTQ
+
+To do this, use the **Tools** panel and open up the **Get Data** section.
 Within this section you will find the tool **Download and Extract Reads in FASTQ format from NCBI SRA**, as highlighted in the figure below.
 
 ![Obtaining Reads from NCBI SRA](fig/02-03.png)
@@ -169,6 +166,29 @@ grey background means the job is queued and red means the job has failed.
 
 If we click on the **Show Hidden** icon, then our paired-end reads will show as **forward** and **reverse** in the history panel.  We can then click the hidden icon for each set of reads, to have them appear for subsequent analyses.  These are the reads we will be working with.
 
+:::
+
+Importing a **shared Galaxy History** is simpler.  To obtain the data use the following link:
+
+https://metagenomics.usegalaxy.eu/u/alisonmacfadyentsl/h/tsl-summer-conference
+
+This will open up Metagenomics Galaxy and allow you to import the history.
+
+![Import Shared History](fig/02-04.png)
+
+The Galaxy page that loads will show the history that has been shared.  Click the button at the top that says 
+**Import this History**.
+
+A pop-up will then appear, giving you the option to rename the history and to chose whether you want to copy all datasets, including deleted one.  Select **Copy only the active, non-deleted datasets** and select **Copy History**.
+
+![Copy History Pop-up](fig/02-05.png)
+
+You can then go to the Galaxy Homepage and you will see that your History has been populated with the data.
+
+To simplify your history, you can delete the datasets you do not need e.g. delete all datasets except the SRA number you have been given.  This can be achieved by clicking the "Trashcan" icon.
+
+![Populated History and Button for Deletion](fig/02-06.png)
+
 ## Assessing quality using FastQC
 
 FastQC has several features that can give you a quick impression of any problems your
@@ -176,7 +196,7 @@ data may have, so you can consider these issues before moving forward with your
 analyses. Rather than looking at quality scores for each read, FastQC looks at
 quality collectively across all reads within a sample. The image below shows one FastQC-generated plot that indicates a very high-quality sample:
 
-![High Quality Sample](fig/02-04.png)
+![High Quality Sample](fig/02-07.png)
 
 The x-axis displays the base position in the read, and the y-axis shows quality scores. In this 
 example, the sample contains reads that are 40 bp long. This length is much shorter than the reads we 
@@ -192,7 +212,7 @@ acceptable (yellow) and bad (red) quality scores.
 
 Now let's look at a quality plot on the other end of the spectrum. 
 
-![Low Quality Sample](fig/02-05.png)
+![Low Quality Sample](fig/02-08.png)
 
 The FastQC tool produces several other diagnostic plots to assess sample quality and the one plotted above. Here, we see positions within the read in which the boxes span a much more comprehensive range. Also, quality scores drop pretty low into the "bad" range, particularly on the tail end of the reads. 
 
@@ -200,20 +220,39 @@ The FastQC tool produces several other diagnostic plots to assess sample quality
 
 We will now assess the quality of the reads that we downloaded.
 
-![Running FastQC with Multiple Datasets](fig/02-06.png)
+![Running FastQC with Multiple Datasets](fig/02-09.png)
 
 In the **Tools** panel use the search box to find FastQC.  Select the **Multiple Datasets** option and click on both the forward and reverse reads.
 We will use default parameters.  Select **Run Tools**.
 
-The job will then queue and appear grey, then change to yellow as it runs:
+The job will then queue and appear grey, then change to yellow as it runs, changing to green upon completion:
 
-![FastQC queued and then running](fig/02-07.png)
+![FastQC queued and then running](fig/02-10.png)
 
 ## Viewing the FastQC Results
 
-Now we can select the **Webpage** output from FastQC to view the results 
+Now we can select the **Webpage** output from FastQC to view the results.  To view the results, select the History output that says **FastQC on data X: Webpage** and click the "eye" icon.  This will open the FastQC results in an .html format.
+
+::: {.callout-tip icon="false"}
+
+## Exercise 1: Discuss the quality of sequencing files
+
+Discuss your results with a neighbour.  Which sample(s) look the best per base sequence quality?
+Which sample(s) look the worst?
+
+:::
+
+::: {.callout-tip collapse="true" icon="false"}
+
+## Solution
+
+All of the reads contain usable data, but the quality decreases toward
+the end of the reads. Note our Metashotgun samples are a subset of the complete dataset.  This has resulted in skewed results.
+
+:::
 
 ## Decoding the other FastQC outputs
+
 We've now looked at quite a few "Per base sequence quality" FastQC graphs, but there are nine other graphs that we haven't talked about! Below we have provided a brief overview of interpretations for each plot. For more information, please see the FastQC documentation [here](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/) 
 
 + [**Per tile sequence quality**](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/12%20Per%20Tile%20Sequence%20Quality.html): the machines that perform sequencing are divided into tiles. This plot displays patterns in base quality along these tiles. Consistently low scores are often found around the edges, but hot spots could also occur in the middle if an air bubble was introduced during the run. 
@@ -229,7 +268,7 @@ We've now looked at quite a few "Per base sequence quality" FastQC graphs, but t
 
 ::: {.callout-tip icon="false"}
 
-## Exercise 4: Quality Tests
+## Exercise 2: Quality Tests
 
 Did your samples fail any of the FastQC's quality tests?
 What test(s) did the samples fail?
@@ -243,6 +282,7 @@ What test(s) did the samples fail?
 Our metabarcoding samples failed:
 
 + Per base sequence content
++ Per sequence GC content
 + Sequence duplication levels
 + Overrepresented sequences
 
@@ -252,7 +292,7 @@ Our shotgun metagenomic sequences failed:
 
 :::
 
-::: {.callout-caution icon="false"}
+::: {.callout-warning icon="false"}
 
 ## Quality Encodings Vary
 
@@ -266,4 +306,12 @@ However, it's essential that you know which sequencing platform was
 used to generate your data to tell your quality control program which encoding
 to use. If you choose the wrong encoding, you run the risk of throwing away good reads or 
 (even worse) not throwing away bad reads!
+:::
+
+::: {.callout-caution icon="false"}
+## Keypoints
+
+-	It is important to know the quality of our data to make decisions in the subsequent steps
+-	FastQC is a program that allows us to know the quality of FASTQ files
+
 :::

@@ -32,17 +32,6 @@ format:
 
 :::
 
-::: {.callout-caution icon="false"}
-## Keypoints
-
--	The options you set for the software you use is important!
--	Data cleaning is essential at the beginning of metagenomics workflows
--	Use Trimmomatic to get rid of adapters and low-quality bases or reads
--	Carefully fill in the parameters and options required to run the software
-
-:::
-
-
 ## Cleaning reads
 
 In the last episode, we took a high-level look at the quality
@@ -80,8 +69,10 @@ Trimmomatic has a variety of options to accomplish its task.
 
 First, we must specify whether we have reads that are paired-end, single-end or a paired-end collection. 
 Next, we will specify whether to perform `ILLUMINACLIP`.  For our reads we want to perform adapter removal, using `TruSeq3`.
-We can use the default parameters.  Next we will chose which "Trimmomatic Operation" we want to use.  You can use
-multiple operations but we will just use the `SLIDINGWINDOW` operation, using 4 bases to average across and a average quality score of 20.
+
+We can use the default parameters.  Next we will chose which "Trimmomatic Operation" we want to use.  You can use multiple operation.  First we will use the `SLIDINGWINDOW` operation, using 4 bases to average across and a average quality score of 20.
+
+Finally, we want to chose an additional "Trimmomatic Operation", `MINLEN`.  This operation will drop the read if it is below a specified length.  Use your FastQC results to determine what this length should be. Ideally, you would want to ensure you keep reads that are a useful length, but you don't want to drop too many e.g. if the average length of your reads is around 150 bp, you wouldn't want to drop reads below 149 bp.  This might remove all your reads, instead using a conservative number of 100-120 bp would be better.
 
 Although we will use only a few options and trimming steps in our analysis, understanding the steps you are using to
 clean your data is essential. For more information about the Trimmomatic arguments and options, see [the Trimmomatic manual](http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf).
@@ -97,19 +88,13 @@ the *Output trimmomatic log messages* option, as this will provide useful inform
 
 ![Select Paired-end (two separate input files)](fig/03-02.png)
 
-Select Paired-end
+Select Paired-end and ILLUMINACLIP
 :::
 
 ::: {#fig-trimmomatic}
-![ILLUMINACLIP](fig/03-03.png)
+![SLIDINGWINDOW](fig/03-03.png)
 
-Settings for ILLUMINACLIP
-:::
-
-::: {#fig-trimmomatic}
-![SLIDINGWINDOW](fig/03-04.png)
-
-Settings SLIDINGWINDOW
+Settings SLIDINGWINDOW and MINLEN
 :::
 
 Once Trimmomatic completes, you will have 5 outputs:
@@ -126,7 +111,7 @@ The reads we are interested in for this analysis are the paired outputs and we a
 
 ## Exercise 1: What did Trimmomatic do?
 
-Use the output from your Trimmomatic command to answer the following questions.
+Use the output from Trimmomatic to answer the following questions.
 
 1) What percentage of reads did we discard from our sample?
 2) What percentage of reads did we keep both pairs?
@@ -138,22 +123,29 @@ Use the output from your Trimmomatic command to answer the following questions.
 ## Solution
 
 Use the log file to answer this question.  You want to look for `Dropped` and `Both Surviving`. 
-For *Sample_108* this gives the following:
+For **SRR127780**, using default settings with a `MINLEN` of 100 bp, we get the following:
 
-1) 0.00%
-2) 99.49%
+1) 1.86%
+2) 91.92%
+
+This values will differ depending on what number you chose for the `MINLEN` variable.  The main point is to know how to find this information and to know this information exists.
 
 :::
 
 ## Editing Dataset Attributes
 
-You have probably noticed by now that the names of our files are beginning to be long and difficult to decipher.
-Therefore, we should edit the data attributes of our files, to give more descriptive names.
+You have probably noticed by now that the names of our files are beginning to be long and difficult to decipher.  Therefore, we should edit the data attributes of our files, to give more descriptive names.
 
 To do this, click the "pencil" icon and edit the name, then click "Save". 
 
 ![Edit attribute](fig/03-05.png)
+I'd recommend using the sample name, as this is descriptive and therefore provides more context for the reads. Don't forget to include information regarding the processing the reads have undergone e.g. add _trimmed to the name (XXXX_trimmed_1.fastq).
 
+::: {.callout-caution icon="false"}
+
+Note, although it is not necessary when working with Galaxy, it is good practise to keep the names of paired-end reads the same, up until the _1 or _2, as most software use the names of the reads to determine reads are paired.
+
+:::
 
 ## Checking the Impact of Trimmomatic
 
@@ -171,13 +163,33 @@ FastQC Comparison of Metabarcoding Sample
 
 ::: {#fig-fastqc-comp layout-ncol=2}
 
-![Metashotgun Sample Before Trimmomatic](fig/03-06.png){#fig-msbt2}
+![Metashotgun Sample Before Trimmomatic](fig/03-08.png){#fig-msbt2}
 
 
-![Metashotgun Sample After Trimmomatic](fig/03-07.png){#fig-msat2}
+![Metashotgun Sample After Trimmomatic](fig/03-09.png){#fig-msat2}
 
 FastQC Comparison of Metashotgun Sample
 :::
 
-From the comparison we can see that the metabarcoding sample has X has 
+From the comparison we can see that the metabarcoding sample (B_sample_98) hasn't changed much compared to before trimming, the reads are still failing the same FastQC tests as previously.
 
+For the metashotgun sample (Sample_98), we can see that the FastQC results now have caution for Sequence length distribution, most likely due to variation in the nucleotides kept within the reads due to the trimmomatic settings we used.
+
+As we can explain the results we are observing from the FastQC, we can proceed.
+
+
+::: {.callout-important icon="false"}
+
+Note, we are now moving onto the **Assembly** steps, which will differ for metabarcoding and metashotgun samples.  For metabarcoding samples, proceed to section **04b Assembly**, for metashotgun samples, proceed to section **04a Assembly**. EDIT THIS TO USE LINKS TO THE PAGE
+
+:::
+
+::: {.callout-caution icon="false"}
+## Keypoints
+
+-	The options you set for the software you use is important!
+-	Data cleaning is essential at the beginning of metagenomics workflows
+-	Use Trimmomatic to get rid of adapters and low-quality bases or reads
+-	Carefully fill in the parameters and options required to run the software
+
+:::
