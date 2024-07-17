@@ -8,7 +8,7 @@ format:
     code-block-background: true
 ---
 
-# Schedule
+# Schedule {.unnumbered}
 
 The content of this workshop is based on material produced by The Carpentries, who aim to teach fundamental skills required for conducting research.
 

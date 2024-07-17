@@ -9,7 +9,8 @@ website:
       - href: index.qmd
         text: Home
       - text: "Sections"
-        menu: 
+        menu:
+          - schedule.qmd
           - 01-background-metadata.qmd
           - 02-assessing-read-quality.qmd
           - 03-trimming-and-filtering.qmd
