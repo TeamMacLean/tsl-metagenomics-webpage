@@ -1,0 +1,66 @@
+project:
+  type: website
+
+website:
+  title: "tsl-metagenomics-webpage"
+  navbar:
+    background: "secondary"
+    left:
+      - href: index.qmd
+        text: Home
+      - text: "Sections"
+        menu: 
+          - 01-background-metadata.qmd
+          - 02-assessing-read-quality.qmd
+          - 03-trimming-and-filtering.qmd
+          - 04-assembly.qmd
+          - 05-taxonomic-assignment.qmd
+          - 06-exploring-taxonomy.qmd
+          - 07-tackling-diversity-with-R.qmd
+          - 08-abundance-analyses.qmd
+    tools:
+      - icon: github
+        menu:
+          - text: Source Code
+            href: https://github.com/TeamMacLean/tsl-metagenomics-analysis-workshop
+  sidebar:
+    style: "docked"
+    collapse-level: 1
+    background: "secondary"
+    contents:
+      - section: "Schedule"
+        contents:
+          - schedule.qmd
+      - section: "Background Metadata"
+        contents:
+          - 01-background-metadata.qmd
+      - section: "Assessing Read Quality"
+        contents:
+          - 02-assessing-read-quality.qmd
+      - section: "Trimming and Filtering"
+        contents:
+          - 03-trimming-and-filtering.qmd
+      - section: "Assembly"
+        contents:
+          - 04-assembly.qmd
+      - section: "Taxonomic Assignment"
+        contents:
+          - 05-taxonomic-assignment.qmd
+      - section: "Exploring Taxonomy"
+        contents:
+          - 06-exploring-taxonomy.qmd
+      - section: "Tackling Diversity with R"
+        contents:
+          - 07-tackling-diversity-with-R.qmd
+      - section: "Abundance Analyses"
+        contents:
+          - 08-abundance-analyses.qmd
+  page-navigation: true
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+editor: visual
+
