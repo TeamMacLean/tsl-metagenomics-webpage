@@ -100,7 +100,7 @@ Plant samples were obtained from chilli pepper production fields, divided into h
     B)  Shotgun Metagenomics
     C)  Genomics of pure cultures
 
-2.  In the table [sample metadata](https://github.com/TeamMacLean/tsl-metagenomics-analysis-workshop/files/PRJNA667299_metadata_truncated.csv) what is the most important piece of metadata collected?
+2.  In the table [sample metadata](https://github.com/TeamMacLean/tsl-metagenomics-webpage/blob/main/files/PRJNA667299_metadata_truncated.csv) what is the most important piece of metadata collected?
 :::
 
 ::: {.callout-tip collapse="true" icon="false"}
@@ -121,7 +121,7 @@ However, any differences in the technical parts of the study, such as the DNA ex
 ::: {.callout-tip icon="false"}
 ## Exercise 2: Differentiate between IDs and sample names
 
-Depending on the database, several IDs can be used for the same sample. Please open the document where the [sample metadata information is stored](https://github.com/TeamMacLean/tsl-metagenomics-analysis-workshop/files/PRJNA667299_metadata_truncated.csv). Here, inspect the Run IDs and find out which of them correspond to sample **F_Sample_116**
+Depending on the database, several IDs can be used for the same sample. Please open the document where the [sample metadata information is stored](https://github.com/TeamMacLean/tsl-metagenomics-webpage/blob/main/files/PRJNA667299_metadata_truncated.csv). Here, inspect the Run IDs and find out which of them correspond to sample **F_Sample_116**
 :::
 
 ::: {.callout-tip collapse="true" icon="false"}
